@@ -11,7 +11,7 @@ document.getElementById("CrearProducto").addEventListener("submit", function(eve
         descripcion: descripcion
     };
 
-    fetch("https//siaweb-nodejs.carlos-reneren7.repl.co/productos", {
+    fetch("https://siaweb-nodejs.carlos-reneren7.repl.co/productos", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
