@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const apiUrl = "https://siaweb-nodejs.carlos-reneren7.repl.co/productos";
 
@@ -40,4 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch((error) => {
             console.error("Error al obtener datos de la API: " + error);
         });
-});
+    });
+
+
