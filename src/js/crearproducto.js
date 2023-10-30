@@ -22,7 +22,7 @@ document.getElementById("CrearProducto").addEventListener("submit", function(eve
     .then(data => {
         alert("Los datos se han enviado con éxito a la API");
 
-        window.location.href = "../index.html";
+        window.location.href = "index.html";
     })
     .catch(error => {
         console.error("Hubo un error al enviar los datos a la API:", error);

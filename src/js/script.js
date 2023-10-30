@@ -1,3 +1,5 @@
+let table; // Declarar la variable table en el alcance global
+
 document.addEventListener("DOMContentLoaded", function () {
     const apiUrl = "https://siaweb-nodejs.carlos-reneren7.repl.co/productos";
 
@@ -11,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then((data) => {
             // Inicializar DataTable
-            const table = $("#productos-table").DataTable({
+            table = $("#productos-table").DataTable({ // Asignar la variable table en el alcance global
                 data: data,
                 columns: [
                     { data: "nombre" },
@@ -20,24 +22,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     {
                         data: null,
                         render: function (data, type, row) {
-                            return '<button class="editar-btn">Editar</button> <button class="eliminar-btn">Eliminar</button>';
+                            const editButton = '<button class="editar-btn" data-id="' + row.id + '">Editar</button>';
+                            const deleteButton = '<button class="eliminar-btn" data-id="' + row.id + '">Eliminar</button>';
+                            return editButton + ' ' + deleteButton;
                         }
                     }
                 ]
             });
 
-            // Agregar evento para los botones
-            $("#productos-table").on("click", ".editar-btn", function () {
-                const data = table.row($(this).parents("tr")).data();
-                alert("Editar producto: " + data.nombre);
-            });
-
-            $("#productos-table").on("click", ".eliminar-btn", function () {
-                const data = table.row($(this).parents("tr")).data();
-                alert("Eliminar producto: " + data.nombre);
-            });
+            // Resto del código...
         })
         .catch((error) => {
             console.error("Error al obtener datos de la API: " + error);
         });
 });
+
+// Agregar un manejador de eventos para el botón "Editar"
+$("#productos-table").on("click", ".editar-btn", function () {
+    const productId = $(this).data("id"); // Obtener el ID del producto a editar
+    // Redirigir a la página de edición con el ID del producto en la URL
+    window.location.href = "./editar_producto.html?id=" + productId;
+});
+
